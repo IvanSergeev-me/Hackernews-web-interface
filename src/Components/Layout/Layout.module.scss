@@ -1,0 +1,12 @@
+.layout{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-background);
+    align-items: center;
+    justify-content: space-between;
+    main {
+        width: 50%;
+    }
+}

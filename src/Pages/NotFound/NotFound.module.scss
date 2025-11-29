@@ -1,0 +1,23 @@
+@use "../../GlobalStyles/Fonts.scss" as fonts;
+
+
+.nf_container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+    &__upper_text {
+        color: var(--text);
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: fonts.$font-size-4xl;
+    }
+
+    &__bottom_text {
+        color: var(--color-orange-1);
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: fonts.$font-size-4xl;
+    }
+}

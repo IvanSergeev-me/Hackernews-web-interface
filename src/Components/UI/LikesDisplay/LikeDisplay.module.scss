@@ -1,0 +1,21 @@
+.like_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75px;
+}
+.like{
+    &__text{
+        color: var(--text);
+    }
+    &__number{
+        color: var(--color-orange-1);
+    }
+}
+
+.heart_svg{
+    width: 48px;
+    height: 48px;
+    color: var(--text);
+    fill: var(--text);
+}
