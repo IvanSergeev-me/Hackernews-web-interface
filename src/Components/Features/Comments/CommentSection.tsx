@@ -20,7 +20,7 @@ const CommentSection: FunctionComponent<ICommentSectionProps> = ({ topLevelIds, 
             </div>
             <span className={style.comments_container__divider}></span>
             <ul className={style.comments_container__list}>
-                {topLevelIds.map(topLevelId => <CommentTree depth={0} maxDepth={1} commentId={topLevelId} />)}
+                {topLevelIds.map(topLevelId => <CommentTree key={topLevelId} depth={0} maxDepth={1} commentId={topLevelId} />)}
             </ul>
         </div>
 

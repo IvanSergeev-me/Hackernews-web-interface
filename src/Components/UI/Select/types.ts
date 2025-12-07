@@ -2,8 +2,10 @@ export interface IDropdownSelectProps {
     name:string,
     id:string,
     onChange: (newValue: SelectOptionValue)=>void,
-    options: SelectOptions;
-    defaultValue?: SelectOptionValue;
+    options: SelectOptions,
+    defaultValue?: SelectOptionValue,
+    label?: string,
+    value: SelectOptionValue
     
 }
 

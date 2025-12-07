@@ -5,6 +5,7 @@ import ItemsSkeleton from "../../UI/ItemsSkeleton/ItemsSkeleton";
 import { ITEMS_PER_PAGE } from "../../../Config/constants";
 import style from './StoryList.module.scss';
 import Job from "./JobCard/Job";
+import { useFavorites } from "../../../Hooks/useFavorites";
 
 interface StoryListProps {
     isLoading: boolean,
@@ -14,6 +15,7 @@ interface StoryListProps {
 
 const StoryList: FunctionComponent<StoryListProps> = ({ isLoading, stories }) => {
     const pageSize = ITEMS_PER_PAGE;
+     const { isFavorite, toggleFavorite } = useFavorites();
     if (isLoading) return <ItemsSkeleton skeletonItems={Math.ceil(pageSize / 3)} />
     return (
         <div className={style.list_container}>
@@ -21,6 +23,8 @@ const StoryList: FunctionComponent<StoryListProps> = ({ isLoading, stories }) =>
                 switch (item.type) {
                     case 'story': {
                         return <Story
+                            isFavorite={isFavorite(item.id)}
+                            onToggleFavorite={toggleFavorite}
                             key={item.id}
                             id={item.id}
                             by={item.by}
@@ -33,7 +37,10 @@ const StoryList: FunctionComponent<StoryListProps> = ({ isLoading, stories }) =>
                         />
                     }
                     case 'job': {
-                        return <Job key={item.id}
+                        return <Job 
+                            isFavorite={isFavorite(item.id)}
+                            onToggleFavorite={toggleFavorite}
+                            key={item.id}
                             id={item.id}
                             by={item.by}
                             text={item.text}

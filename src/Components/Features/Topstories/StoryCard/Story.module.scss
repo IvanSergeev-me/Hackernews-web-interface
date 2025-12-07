@@ -1,3 +1,5 @@
+@use '../../../../GlobalStyles/Breakpoints.scss' as breakpoints;
+
 .story_container {
     padding: 1em;
     box-sizing: border-box;
@@ -6,6 +8,7 @@
     flex-direction: column;
     background-color: var(--secondary-background);
     border-radius: var(--border-radius-1);
+    position: relative;
 
     &__top {
         display: flex;
@@ -133,3 +136,12 @@
         }
     }
 }
+
+@media (max-width: breakpoints.$phone) {
+    .story_container {
+        &__top{
+            flex-direction: column;
+        }
+    }
+}
+

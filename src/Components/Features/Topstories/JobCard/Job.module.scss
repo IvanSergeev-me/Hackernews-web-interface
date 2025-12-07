@@ -1,3 +1,6 @@
+@use '../../../../GlobalStyles/Breakpoints.scss' as breakpoints;
+
+
 .job_container {
     padding: 1em;
     box-sizing: border-box;
@@ -124,6 +127,14 @@
             color: var(--color-orange-1);
             transition: all;
             transition-duration: var(--transition-duration-1);
+        }
+    }
+}
+
+@media (max-width: breakpoints.$phone) {
+    .job_container {
+        &__top{
+            flex-direction: column;
         }
     }
 }

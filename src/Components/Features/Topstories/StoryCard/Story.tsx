@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { memo, useState } from 'react';
 import type { StoryShortInfo } from '../../../../Pages/Topstories/types';
 import style from './Story.module.scss';
 import { unixTimeToDateTime } from '../../../../Utils/UnixTimeConverter/unixTimeToDateTime';
 import LikeDisplay from '../../../UI/LikesDisplay/LikesDisplay';
 import { NavLink } from 'react-router-dom';
 import { RouteNames } from '../../../Router/routes';
+import FavoriteDisplay from '../FavoriteDisplay/FavoriteDisplay';
+
+interface IStoryCardProps extends StoryShortInfo {
+    isFavorite: boolean;
+    onToggleFavorite: (storyId: number) => void;
+}
 
 
-const Story: React.FunctionComponent<StoryShortInfo> = ({ id, title, by, descendants, score, time, type, url }) => {
+const Story: React.FunctionComponent<IStoryCardProps> = ({ id, title, by, descendants, score, time, type, url, isFavorite,onToggleFavorite }) => {
 
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+    
     const dateTime = unixTimeToDateTime(time);
 
     const routeName = RouteNames.TOPSTORY_DETAILS.replace(':id', id.toString());
 
+    const handleFavoriteClick = () => {
+        onToggleFavorite(id);
+    }
+
+
     return (
-        <div className={style.story_container}>
+        <div 
+            className={style.story_container}
+            onMouseEnter={()=>setIsHovered(true)}
+            onMouseLeave={()=>setIsHovered(false)}>
             <div className={style.story_container__top}>
                 <div className={style.top__right}>
                     <p className={style.title}><a href={url}>{title}</a></p>
@@ -39,8 +55,9 @@ const Story: React.FunctionComponent<StoryShortInfo> = ({ id, title, by, descend
                 </p>
                 <NavLink to={routeName} className={style.bottom__link}>Go to discussion</NavLink>
             </div>
+            { isHovered && <FavoriteDisplay isFavorite={isFavorite} onBookmarkClick={handleFavoriteClick} />}
         </div>
     );
 }
 
-export default Story;
+export default memo(Story);

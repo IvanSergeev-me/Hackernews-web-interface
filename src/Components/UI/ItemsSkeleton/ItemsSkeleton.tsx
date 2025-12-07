@@ -11,9 +11,9 @@ const ItemsSkeleton: FunctionComponent<SkeletonProps> = ({ skeletonItems }) => {
 
     return (
         <div className={style.skeleton_container}>
-            {ItemsArray.map(_ => {
+            {ItemsArray.map((_ , index)=> {
                 return (
-                    <div className={style.skeleton_container__item}></div>
+                    <div key={index} className={style.skeleton_container__item}></div>
                 )
             })}
         </div>

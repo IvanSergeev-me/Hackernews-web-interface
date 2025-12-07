@@ -1,24 +1,22 @@
-import { useState, type FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 import type { CommentWithChildren } from "../../../../Pages/Topstories/types";
-import CommentTree from "./CommentTree";
 import style from './CommentTree.module.scss';
 import { unixTimeToDateTime } from "../../../../Utils/UnixTimeConverter/unixTimeToDateTime";
 import ExpandButton from "./ExpandButton";
+import CommentTextDisplay from "./CommentTextDisplay";
 
 interface ICommentProps extends CommentWithChildren {
     maxDepth: number;
+    canExpand: boolean;
+    toggleExpand: () => void;
 }
 
-const Comment: FunctionComponent<ICommentProps> = ({ by, hasKids, kidsCount, text, time, kids, depth, maxDepth }) => {
+const Comment: FunctionComponent<ICommentProps> = ({ by, kidsCount, text, time ,canExpand,toggleExpand, isExpanded }) => {
 
-    const [isExpanded, setIsExpanded] = useState(depth < maxDepth - 1);
+    
     const timeToDisplay = unixTimeToDateTime(time);
 
-    const canExpand = hasKids;
-
-    const toggleExpand = () =>{
-        setIsExpanded(prev=> !prev);
-    }
+    
 
     return (
         <li className={style.tree_container}>
@@ -30,9 +28,7 @@ const Comment: FunctionComponent<ICommentProps> = ({ by, hasKids, kidsCount, tex
                     </p>
                 </div>
                 <div className={style.comment_container__text_wrapper}>
-                    <p>
-                        {text}
-                    </p>
+                    <CommentTextDisplay htmlText={text} />
                 </div>
                 {canExpand && <div className={style.comment_container__bottom}>
                     <hr></hr>
@@ -46,21 +42,6 @@ const Comment: FunctionComponent<ICommentProps> = ({ by, hasKids, kidsCount, tex
 
                     
                 </div>}
-            </div>
-            <div>
-                {isExpanded && canExpand && kids && (
-                    <>
-                        <ul>
-                            {kids.map(kidId => (
-                                <CommentTree
-                                    key={kidId}
-                                    commentId={kidId}
-                                    depth={depth + 1}
-                                    maxDepth={maxDepth}
-                                />
-                            ))}
-                        </ul></>
-                )}
             </div>
         </li>
     );

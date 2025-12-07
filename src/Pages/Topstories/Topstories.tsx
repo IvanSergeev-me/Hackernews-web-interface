@@ -6,35 +6,59 @@ import { useItems } from '../../Hooks/useItems';
 import ItemsSkeleton from '../../Components/UI/ItemsSkeleton/ItemsSkeleton';
 import { ITEMS_PER_PAGE } from '../../Config/constants';
 import { useValidPage } from '../../Hooks/useValidPage';
+import SortSection from '../../Components/Features/SortSection/SortSection';
+import { TOP_STORIES_SORT_OPTIONS } from './types';
+import { useSort } from '../../Hooks/useSort';
+import type { SelectOptionValue } from '../../Components/UI/Select/types';
 
 
-const Topstories: React.FunctionComponent= () => {
-    const pageSize = ITEMS_PER_PAGE;
+const Topstories: React.FunctionComponent = () => {
+    const PAGE_SIZE = ITEMS_PER_PAGE;
 
-    const {currentPage,setNewPage} = useValidPage();  
+    const SORT_OPTIONS = TOP_STORIES_SORT_OPTIONS;
 
-    const { stories: storyIds, totalItems, isLoading, isError } = usePaginatedStories({ 
-        pageNum: currentPage, 
-        pageSize: pageSize 
+    const { currentPage, setNewPage } = useValidPage();
+
+    const {onSortChange,sortBy} = useSort({});
+
+    const { stories: storyIds, totalItems, isLoading, isError } = usePaginatedStories({
+        pageNum: currentPage,
+        pageSize: PAGE_SIZE,
+        sortBy
     });
 
-    const {data, isLoading: isStoriesLoading, isError: isStoriesError} = useItems(storyIds, currentPage);
+    const { data, isLoading: isStoriesLoading, isError: isStoriesError } = useItems(storyIds, currentPage);
 
     if (isError || isStoriesError) return <section>Error</section>;
 
-    if (isLoading) return <ItemsSkeleton skeletonItems={Math.ceil(pageSize/3)}/>
+    if (isLoading) return <ItemsSkeleton skeletonItems={Math.ceil(PAGE_SIZE / 3)} />
 
-    const onPageChange = (pageNum:number) =>{
+    const onPageChange = (pageNum: number) => {
         setNewPage(pageNum);
     }
 
-    return ( 
+    const handleSortChange = (value: SelectOptionValue) =>{
+        onSortChange(value);
+        setNewPage(1);
+    }
+
+    return (
         <section>
-            <StoryList stories={data} isLoading={isStoriesLoading}/>
-            {storyIds && <Pagination totalItems={totalItems } pageSize={pageSize} pageNum={currentPage} onPageChange={onPageChange}/>}
+            <SortSection
+                showDivider={true}
+                dropdownSelectProps={
+                    {
+                        id: "sort_stories",
+                        name: "sort_stories",
+                        options: SORT_OPTIONS,
+                        onChange: handleSortChange,
+                        value: sortBy
+                    }} />
+            <StoryList stories={data} isLoading={isStoriesLoading} />
+            {storyIds && <Pagination totalItems={totalItems} pageSize={PAGE_SIZE} pageNum={currentPage} onPageChange={onPageChange} />}
         </section>
-        
-     );
+
+    );
 }
- 
+
 export default Topstories;

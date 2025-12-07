@@ -1,3 +1,5 @@
+@use '../../../GlobalStyles/Breakpoints.scss' as breakpoints;
+
 .footer_container {
     display: flex;
     width: 100%;
@@ -87,5 +89,26 @@
 
     &_text {
         color: var(--text);
+    }
+}
+
+@media (max-width: breakpoints.$phone) {
+    .footer_container {
+        &__top_section {
+            flex-direction: column;
+        }
+    }
+
+    .top_section {
+        &__left_part {
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        &__right_part {
+            width: 100%;
+            align-items: flex-start;
+
+        }
     }
 }

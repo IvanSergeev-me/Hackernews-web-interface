@@ -1,3 +1,5 @@
+import type { SelectOptions } from "../../Components/UI/Select/types";
+
 export type StoryId = number;
 
 export type StoryIds = StoryId[];
@@ -52,8 +54,18 @@ export type JobInfo = {
   url: string;
 };
 
+export type SortType = 'newest' | 'old' | 'best' | 'worst';
+export const SORT_TYPES: SortType[] = ['newest', 'old', 'best', 'worst'];
+
+export const TOP_STORIES_SORT_OPTIONS = [{text:"Newest", value:"newest"}, 
+  {text:"Old", value:"old"}, 
+  {text:"Best", value:"best"}, 
+  {text: "Worst", value:"worst"}] as SelectOptions;
+
 export type StoryShortInfo = Omit<StoryInfo, "kids">
 
 export type ItemId = JobId | CommentId | StoryId;
 
 export type ItemInfo = JobInfo | CommentInfo | StoryInfo;
+
+export type FavoriteItems = ItemId[];

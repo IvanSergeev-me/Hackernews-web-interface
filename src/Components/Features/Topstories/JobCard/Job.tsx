@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { memo, useState } from 'react';
 import type { JobInfo } from '../../../../Pages/Topstories/types';
 import style from './Job.module.scss';
 import { unixTimeToDateTime } from '../../../../Utils/UnixTimeConverter/unixTimeToDateTime';
 import LikeDisplay from '../../../UI/LikesDisplay/LikesDisplay';
+import FavoriteDisplay from '../FavoriteDisplay/FavoriteDisplay';
 
+interface IJobCardProps extends JobInfo {
+    isFavorite: boolean;
+    onToggleFavorite: (storyId: number) => void;
+}
 
-const Job: React.FunctionComponent<JobInfo> = ({ id, title, by, text, score, time, type, url }) => {
+const Job: React.FunctionComponent<IJobCardProps> = ({ id, title, by, text, score, time, type, url,isFavorite,onToggleFavorite }) => {
 
     const dateTime = unixTimeToDateTime(time);
 
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+
+    const handleFavoriteClick = () => {
+        onToggleFavorite(id);
+    }
+
     return (
-        <div className={style.job_container}>
+        <div className={style.job_container}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
             <div className={style.job_container__top}>
                 <div className={style.top__right}>
                     <p className={style.title}><a href={url}>{title}</a></p>
@@ -33,8 +46,9 @@ const Job: React.FunctionComponent<JobInfo> = ({ id, title, by, text, score, tim
                     {text}
                 </p>}
             </div>
+            { isHovered && <FavoriteDisplay isFavorite={isFavorite} onBookmarkClick={handleFavoriteClick} />}
         </div>
     );
 }
 
-export default Job;
+export default memo(Job);
