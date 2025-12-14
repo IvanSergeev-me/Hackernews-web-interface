@@ -16,7 +16,7 @@ export type StoryInfo = {
   score: number;
   time: number;
   title: string;
-  type: 'story';
+  type: "story";
   url: string;
 };
 
@@ -27,7 +27,7 @@ export type CommentInfo = {
   parent: number;
   text: string;
   time: number;
-  type: 'comment';
+  type: "comment";
 };
 
 export type StoryWithComments = StoryInfo & {
@@ -40,7 +40,7 @@ export type CommentWithChildren = CommentInfo & {
   kidsCount: number;
   isExpanded?: boolean;
   isLoading?: boolean;
-  depth:number;
+  depth: number;
 };
 
 export type JobInfo = {
@@ -50,19 +50,21 @@ export type JobInfo = {
   text: string;
   time: number;
   title: string;
-  type: 'job';
+  type: "job";
   url: string;
 };
 
-export type SortType = 'newest' | 'old' | 'best' | 'worst';
-export const SORT_TYPES: SortType[] = ['newest', 'old', 'best', 'worst'];
+export type SortType = "newest" | "old" | "best" | "worst";
+export const SORT_TYPES: SortType[] = ["newest", "old", "best", "worst"];
 
-export const TOP_STORIES_SORT_OPTIONS = [{text:"Newest", value:"newest"}, 
-  {text:"Old", value:"old"}, 
-  {text:"Best", value:"best"}, 
-  {text: "Worst", value:"worst"}] as SelectOptions;
+export const TOP_STORIES_SORT_OPTIONS = [
+  { text: "Newest", value: "newest" },
+  { text: "Old", value: "old" },
+  { text: "Best", value: "best" },
+  { text: "Worst", value: "worst" },
+] as SelectOptions;
 
-export type StoryShortInfo = Omit<StoryInfo, "kids">
+export type StoryShortInfo = Omit<StoryInfo, "kids">;
 
 export type ItemId = JobId | CommentId | StoryId;
 

@@ -7,6 +7,6 @@ export interface GetVisiblePagesParams {
 }
 
 export interface GetMaxPageParams {
-    totalItems: number, 
-    pageSize: number
+  totalItems: number;
+  pageSize: number;
 }
