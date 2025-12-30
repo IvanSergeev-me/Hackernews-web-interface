@@ -3,7 +3,7 @@ import type { CommentWithChildren } from "../../../../Pages/Topstories/types";
 import style from "./CommentTree.module.scss";
 import { unixTimeToDateTime } from "../../../../Utils/UnixTimeConverter/unixTimeToDateTime";
 import ExpandButton from "./ExpandButton";
-import CommentTextDisplay from "./CommentTextDisplay";
+import CommentTextDisplay from "../../../UI/HtmlTextDisplay/HtmlTextDisplay";
 
 interface ICommentProps extends CommentWithChildren {
   maxDepth: number;

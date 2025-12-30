@@ -1,0 +1,61 @@
+.text_wrapper {
+    position: relative;
+
+    &__text {
+        color: var(--text-2);
+        padding: 0 0.5em;
+        white-space: break-spaces;
+        word-break: break-word;
+
+        a {
+            text-decoration: none;
+            color: var(--text-link);
+
+            &:hover {
+                color: var(--color-orange-1);
+                transition: all;
+                transition-duration: var(--transition-duration-1);
+            }
+        }
+
+        pre {
+            white-space: break-spaces;
+        }
+
+        p {
+            word-break: break-word;
+        }
+    }
+
+}
+
+.text_display_container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+
+    button {
+        cursor: pointer;
+        color: var(--text);
+        background-color: var(--main-background);
+        outline: none;
+        border: none;
+        padding: 0.5em 1.5em;
+        border-radius: var(--border-radius-1);
+    }
+}
+
+.text_collapsed {
+    max-height: 100px;
+    overflow: hidden;
+    width: 100%;
+    padding: 1em 0;
+    border-radius: var(--border-radius-1);
+    
+    user-select: none;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            var(--main-background) 80%);
+}

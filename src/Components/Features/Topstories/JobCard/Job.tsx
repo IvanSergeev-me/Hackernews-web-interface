@@ -4,6 +4,7 @@ import style from "./Job.module.scss";
 import { unixTimeToDateTime } from "../../../../Utils/UnixTimeConverter/unixTimeToDateTime";
 import LikeDisplay from "../../../UI/LikesDisplay/LikesDisplay";
 import FavoriteDisplay from "../FavoriteDisplay/FavoriteDisplay";
+import HtmlTextDisplay from "../../../UI/HtmlTextDisplay/HtmlTextDisplay";
 
 interface IJobCardProps extends JobInfo {
   isFavorite: boolean;
@@ -57,7 +58,7 @@ const Job: React.FunctionComponent<IJobCardProps> = ({
         </p>
       </div>
       <div className={style.job_container__bottom}>
-        {text && <p className={style.text}>{text}</p>}
+        {text && <HtmlTextDisplay htmlText={text} showType="can-be-expanded" />}
       </div>
       {isHovered && (
         <FavoriteDisplay

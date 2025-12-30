@@ -1,6 +1,6 @@
 import React from "react";
 import { usePaginatedStories } from "../../Hooks/useTopStories";
-import Pagination from "../../Components/UI/Pagination/Pagination";
+import Pagination from "../../Components/Features/Pagination/Pagination";
 import StoryList from "../../Components/Features/Topstories/StoryList";
 import { useItems } from "../../Hooks/useItems";
 import ItemsSkeleton from "../../Components/UI/ItemsSkeleton/ItemsSkeleton";
