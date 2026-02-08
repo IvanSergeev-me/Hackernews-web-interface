@@ -6,16 +6,16 @@ Its a web-interface for https://github.com/HackerNews/API?tab=readme-ov-file
 ### 🖼️ Screenshots
 
 **Main page**  
-![Main page](demonstration/screenshots/mainpage.png)
+![Main page](demonstration/screenshots/mainpage.PNG)
 
 **Favorites**  
-![Favorites](demonstration/screenshots/favorites.png)
+![Favorites](demonstration/screenshots/favorites.PNG)
 
 **Commentaties**  
-![Commentaties](demonstration/screenshots/commentaries.png)
+![Commentaties](demonstration/screenshots/commentaries.PNG)
 
 **Pagination**  
-![Pagination](demonstration/screenshots/pagination.png)
+![Pagination](demonstration/screenshots/pagination.PNG)
 
 ### 🎥 Video
 
